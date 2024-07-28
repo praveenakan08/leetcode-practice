@@ -1,3 +1,4 @@
+// TC - O(n), SC - O(len(s) + len(t))
 class Solution {
     public boolean isAnagram(String s, String t) {
         Map<Character, Integer> sMap = new HashMap();

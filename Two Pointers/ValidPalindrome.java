@@ -1,3 +1,4 @@
+// TC - O(n), SC - O(1)
 class Solution {
     public boolean isPalindrome(String s) {
         int left = 0, right = s.length() - 1;

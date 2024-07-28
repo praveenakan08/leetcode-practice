@@ -1,3 +1,5 @@
+// len(strs[i]) = l
+// TC - O(n + llogl), SC - O(n)
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> map = new HashMap();
