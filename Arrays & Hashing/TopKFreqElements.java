@@ -1,3 +1,4 @@
+// TC - O(n), SC - O(n)
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
         // countMap to store the counts of each num
