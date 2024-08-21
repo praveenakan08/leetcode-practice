@@ -1,4 +1,4 @@
-// TC - O(n), SC - O(n)
+// TC - O(nlogn + n^2), SC - O(n)
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         List<List<Integer>> result = new ArrayList();
