@@ -1,3 +1,4 @@
+// TC - O(n), SC - O(1)
 class Solution {
     public int numOfSubarrays(int[] arr, int k, int threshold) {
         // solution 1
