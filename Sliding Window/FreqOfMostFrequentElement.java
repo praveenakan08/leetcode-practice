@@ -1,4 +1,4 @@
-// TC - O()
+// TC - O(nlogn + n) SC - O(1)
 class Solution {
     public int maxFrequency(int[] nums, int k) {
        long currSum = 0;
