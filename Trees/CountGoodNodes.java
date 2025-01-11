@@ -13,7 +13,7 @@
  * }
  * }
  */
-// TC - O(n), SC - O(1)
+// TC - O(n), SC - O(n)
 class Solution {
     private int count = 0;
 
