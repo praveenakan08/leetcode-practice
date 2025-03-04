@@ -1,4 +1,8 @@
-// TC - O(2^n), SC - O(logn)
+// TC - O(2^logn base3), SC - O(logn)
+// 3^i = n
+// apply log on both sides
+// ilog3 = n
+// i = logn base3 -- height of the recursive tree 
 class Solution {
 
     boolean result;
