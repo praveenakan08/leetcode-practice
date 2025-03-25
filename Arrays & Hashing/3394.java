@@ -1,4 +1,4 @@
-// TC - O(mn), SC - O(m + n)
+// TC - O(nlogn), SC - O(m + n)
 class Solution {
     public boolean checkValidCuts(int n, int[][] rectangles) {
         int[][] xIntervals = new int[rectangles.length][2];
