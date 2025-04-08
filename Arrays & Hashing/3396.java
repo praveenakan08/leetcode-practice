@@ -41,3 +41,18 @@ class Solution {
         return result;
     }
 }
+
+class Solution {
+    public int minimumOperations(int[] nums) {
+        int freq[] = new int[101];  // only 100 elements in array
+
+        // iterate array backwards 
+        for(int i = nums.length - 1; i >= 0; i--) {
+            if(++freq[nums[i]] > 1) {
+                return (i + 3) / 3;    // when duplicate found, return min operations
+            }
+        }
+        
+        return 0;
+    }
+}
