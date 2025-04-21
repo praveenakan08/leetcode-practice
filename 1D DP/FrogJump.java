@@ -81,4 +81,25 @@ class Solution {
         }
         return dp[heights.length - 1];
     }
+
+    // DP - 3 There will ALWAYS be a space optimized sol if indices are i - 1 and i - 2
+    public int minCost(int[] heights) {
+        int prev = 0, prev2 = 0, current = 0;
+        // dp[i - 1] -> prev
+        // dp[i - 2] -> prev2
+       
+        for(int i = 1; i < heights.length; i++) {
+            int oneStep = prev + Math.abs(heights[i - 1] - heights[i]);
+            int twoStep = Integer.MAX_VALUE;
+            if(i > 1) {
+                twoStep = prev2 + Math.abs(heights[i - 2] - heights[i]);
+            }
+            
+            current = Math.min(twoStep, oneStep);
+            prev2 = prev;
+            prev = current;
+        }
+        return current;
+    }
+
 }
