@@ -1,3 +1,4 @@
+// TC - O(nk), SC - O(n)
 class Solution {
     public int frogJump(int[] heights, int k) {
         return rec(heights.length - 1, heights, k);
