@@ -9,8 +9,9 @@ class Solution {
         for(int[] row: minTime) {
             Arrays.fill(row, Integer.MAX_VALUE);
         }
+        minTime[0][0] = 0;
 
-        int[][] dir = {{0, 1}, {-1, 0}, {0, 1}, {0, -1}};
+        int[][] dir = {{0, 1}, {-1, 0}, {1, 0}, {0, -1}};
         while(!minHeap.isEmpty()) {
             int[] current = minHeap.poll();
 
