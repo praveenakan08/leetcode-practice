@@ -1,4 +1,6 @@
 // TC - O(mn), SC - O(mn)
+// shortest path from start to end using weighted graph
+
 class Solution {
     public int minTimeToReach(int[][] moveTime) {
         // MINIMUM TIME -- BFS or Dijkstra's min path
