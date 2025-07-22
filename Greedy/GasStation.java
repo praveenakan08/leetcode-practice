@@ -28,3 +28,32 @@ class Solution {
         return start;
     }
 }
+
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int gasSum = 0, costSum = 0;
+
+        for(int i = 0; i < gas.length; i++) {
+            gasSum += gas[i];
+            costSum += cost[i];
+        }
+
+        if(gasSum < costSum) {
+            return -1;
+        } 
+
+
+        int start = 0, myGas = 0;
+        for(int i = 0; i < gas.length; i++) {
+            myGas += gas[i] - cost[i];
+
+            if(myGas < 0) {
+                myGas = 0;
+                start = i + 1;
+            }
+        }
+        
+
+        return start;
+    }
+}
