@@ -44,3 +44,47 @@ class Solution {
         dfs(i, j - 1, height, visited, prevHeight);
     }
 }
+
+class Solution {
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+        // m x n
+        List<List<Integer>> result = new ArrayList();
+        boolean[][] pacific = new boolean[heights.length][heights[0].length];
+        boolean[][] atlantic = new boolean[heights.length][heights[0].length];
+        
+        int rows = heights.length, cols = heights[0].length;
+        for(int i = 0; i < cols; i++) {
+            dfs(0, i, heights, pacific, Integer.MIN_VALUE);
+            dfs(rows - 1, i, heights, atlantic, Integer.MIN_VALUE);
+        }
+
+        for(int i = 0; i < rows; i++) {
+            dfs(i, 0, heights, pacific, Integer.MIN_VALUE);
+            dfs(i, cols - 1, heights, atlantic, Integer.MIN_VALUE);
+        }
+
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                if(pacific[i][j] && atlantic[i][j]) {
+                    result.add(List.of(i, j));
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private void dfs(int i, int j, int[][] heights, boolean[][] visited, int prevHeight) {
+        if(i < 0 || i >= heights.length || j < 0 || j >= heights[0].length || visited[i][j] || heights[i][j] < prevHeight) {
+            return;
+        }
+
+        visited[i][j] = true;
+        prevHeight = heights[i][j];
+
+        dfs(i + 1, j, heights, visited, prevHeight);
+        dfs(i - 1, j, heights, visited, prevHeight);
+        dfs(i, j + 1, heights, visited, prevHeight);
+        dfs(i, j - 1, heights, visited, prevHeight);
+    }
+}
