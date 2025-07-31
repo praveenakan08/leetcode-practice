@@ -37,3 +37,36 @@ class Solution {
         parent[find(v, parent)] = find(u, parent); // parent[3] = 1
     }
 }
+
+class Solution {
+    public int[] findRedundantConnection(int[][] edges) {
+        int n = edges.length + 1;
+
+        int[] parent = new int[n + 1];
+        for(int i = 1; i < parent.length; i++) {
+            parent[i] = i;
+        }
+
+        for(int[] edge: edges) {
+            if(find(edge[0], parent) == find(edge[1], parent)) {
+                return new int[]{edge[0], edge[1]};
+            } else {
+                union(edge[0], edge[1], parent);
+            }
+        }
+
+        return new int[0];
+    }
+
+    private int find(int x, int[] parent) {
+        if(x == parent[x]) {
+            return x;
+        }
+
+        return find(parent[x], parent);
+    }
+
+    private void union(int x, int y, int[] parent) {
+        parent[find(y, parent)] = find(x, parent);
+    }
+}
