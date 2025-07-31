@@ -46,3 +46,43 @@ class Solution {
         return finish == numCourses;
     }   
 }
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        // topological sort 
+        int[] indegree = new int[numCourses];
+        int finish = 0;
+
+        Map<Integer, List<Integer>> adj = new HashMap();
+        for(int i = 0; i < numCourses; i++) {
+            adj.put(i, new ArrayList());
+        }
+
+        for(int[] preq: prerequisites) {
+            adj.get(preq[0]).add(preq[1]);
+            indegree[preq[1]]++;
+        }
+
+        Queue<Integer> q = new LinkedList();
+        for(int i = 0; i < indegree.length; i++) {
+            if(indegree[i] == 0) {
+                q.add(i);
+            }
+        }     
+          
+        while(!q.isEmpty()) {
+            int polled = q.poll();
+
+            for(int dep: adj.get(polled)) {
+                indegree[dep]--;
+                
+                if(indegree[dep] == 0) {
+                    q.add(dep);
+                }
+            }
+
+            finish++;
+        }
+
+        return finish == numCourses;
+    }
+}

@@ -50,3 +50,41 @@ class Solution {
         return finish == numCourses ? result: new int[]{};
     }
 }
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        int[] result = new int[numCourses];
+        int[] indegree = new int[numCourses];
+        Map<Integer, List<Integer>> adj = new HashMap();
+
+        for(int i = 0; i < numCourses; i++) {
+            adj.put(i, new ArrayList());
+        }
+
+        for(int[] preq: prerequisites) {
+            adj.get(preq[0]).add(preq[1]);
+            indegree[preq[1]]++;
+        }
+
+        Queue<Integer> q = new LinkedList();
+        for(int i = 0; i < numCourses; i++) {
+            if(indegree[i] == 0) {
+                q.add(i);
+            }
+        }
+
+        int n = numCourses - 1;
+        while(!q.isEmpty()) {
+            int polled = q.poll();
+            result[n--] = polled; 
+
+            for(int dep: adj.get(polled)) {
+                indegree[dep]--;
+                if(indegree[dep] == 0) {
+                    q.add(dep);
+                }
+            }
+        }
+
+        return n == -1 ? result: new int[0];
+    }
+}
