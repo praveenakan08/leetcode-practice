@@ -49,3 +49,38 @@ class Solution {
         return result;
     }
 }
+
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList();
+        if(root == null) {
+            return result;
+        }
+
+        Queue<TreeNode> q = new LinkedList();
+        q.offer(root);
+
+        while(!q.isEmpty()) {
+            List<Integer> levelList = new ArrayList();
+            int levelLength = q.size();
+
+            for(int i = 0; i < levelLength; i++) {
+                TreeNode currentNode = q.peek();
+
+                if(currentNode.left != null) {
+                    q.offer(currentNode.left);
+                }
+
+                if(currentNode.right != null) {
+                    q.offer(currentNode.right);
+                }
+
+                levelList.add(q.poll().val);
+            } 
+
+            result.add(levelList);
+        }
+
+        return result;
+    }
+}
