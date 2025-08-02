@@ -29,3 +29,33 @@ class Solution {
         return false;
     }
 }
+
+class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        for(int[] mat: matrix) {
+            if(binarySearch(mat, target)) {
+                    return true;
+                }
+        }
+
+        return false;
+    }
+
+    private boolean binarySearch(int[] matrix, int target) {
+        int left = 0, right = matrix.length - 1;
+
+        while(left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if(target == matrix[mid]) {
+                return true;
+            } else if(target < matrix[mid]) {
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return false;
+    }
+}
