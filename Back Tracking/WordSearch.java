@@ -33,3 +33,39 @@ class Solution {
         return result;
     }
 }
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        boolean result = false;
+        boolean visited[][] = new boolean[board.length][board[0].length];
+
+        for(int i = 0; i < board.length; i++) {
+            for(int j = 0; j < board[i].length; j++) {
+                if(word.startsWith(board[i][j]) && dfs(i, j, 0, new StringBuilder(), word, board, visited)) {
+                    return true;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private boolean dfs(int i, int j, int k, StringBuilder current, String word, char[][] board, boolean[][] visited) {
+        if(k == word.length()) {
+            return true;
+        }
+
+        
+        if(i < 0 || i >= board.length || j < 0 || j >= board[i].length || word.charAt(k) != board[i][j] || visited[i][j]) {
+            return false;
+        }
+
+        visited[i][j] = true;
+        boolean result = dfs(i + 1, j + 1, k + 1, word, board, visited)
+        || dfs(i - 1, j + 1, k + 1, word, board, visited)
+        || dfs(i + 1, j + 1, k + 1, word, board, visited)
+        || dfs(i - 1, j - 1, k + 1, word, board, visited);
+
+        visited[i][j] = false;
+        return result;
+    }
+}
