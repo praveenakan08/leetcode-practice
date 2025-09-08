@@ -25,6 +25,16 @@ class Solution {
 private int[] sort(int[] nums) {
 
     for(int i = 0; i < nums.length; i++) {
-        for(int j = i + 1; j < nums.length;)
+        int min = Integer.MAX_VALUE;
+        for(int j = i + 1; j < nums.length; j++) {
+            min = Math.min(min, nums[j]);
+        }
+
+        // swapping with min element
+        int temp = nums[i];
+        nums[i] = min;
+        min = temp;
     } 
+
+    return nums;
 }
