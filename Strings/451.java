@@ -22,3 +22,27 @@ class Solution {
         return result.toString();
     }
 }
+
+class Solution {
+    public String frequencySort(String s) {
+        Map<Character, Integer> freq = new HashMap();
+        Queue<Character> q = new PriorityQueue((a, b) -> freq.get(b) - freq.get(a));
+
+        for(int i = 0; i < s.length(); i++) {
+            freq.put(s.charAt(i), freq.getOrDefault(s.charAt(i), 0) + 1);            
+        }
+
+        q.addAll(freq.keySet());
+
+        StringBuilder result = new StringBuilder();
+        while(!q.isEmpty()) {
+            char key = q.remove();
+
+            for(int i = 1; i <= freq.get(key); i++) {
+                result.append(key);
+            }
+        }
+
+        return result.toString();
+    }
+}
