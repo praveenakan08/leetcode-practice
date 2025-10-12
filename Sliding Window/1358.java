@@ -19,3 +19,28 @@ class Solution {
         return count;
     }
 }
+
+class Solution {
+    public int numberOfSubstrings(String s) {
+        Map<Character, Integer> map = new HashMap();
+        int result = 0, right = 0, left = 0;
+
+        while(right < s.length()) {
+            map.put(s.charAt(right), map.getOrDefault(s.charAt(right), 0) + 1);
+
+            while(map.getOrDefault('a', 0) > 0 
+                && map.getOrDefault('b', 0) > 0 
+                && map.getOrDefault('c', 0) > 0) {
+
+                result += s.length() - right;
+                map.put(s.charAt(left), map.get(s.charAt(left)) - 1);
+                left++;
+            }
+
+            right++;
+        }
+
+
+        return result;
+    }
+}
