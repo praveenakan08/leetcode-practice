@@ -1,5 +1,6 @@
 class Solution {
     public int findPlatform(int[] a, int[] d) {
+        // NS
         // Arrival = [900, 940, 950, 1100, 1500, 1800] , 
         // Departure = [910, 1200, 1120, 1130, 1900, 2000]
 
@@ -26,5 +27,30 @@ class Solution {
         }
 
         return map.size();
+    }
+}
+
+// optimized approach
+
+// TC - O(nlogn), SC - O(1)
+class Solution {
+    public int minPlatform(int a[], int d[]) {
+        Arrays.sort(a);
+        Arrays.sort(d);
+
+        int result = 1, platforms = 1, i = 1, j = 0;
+        while(i < a.length && j < d.length) {
+            if(a[i] <= d[j]) {
+                platforms++;
+                i++;
+            } else {
+                platforms--;
+                j++;
+            }
+            
+            result = Math.max(platforms, result);
+        }
+        
+        return result;
     }
 }
