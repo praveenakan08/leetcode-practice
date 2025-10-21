@@ -20,3 +20,26 @@ class Solution {
         return result.toArray(new int[result.size()][]);
     }
 }
+
+// TC - O(n log n), SC - O(n)
+
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+
+        List<int[]> result = new ArrayList();
+        result.add(intervals[0]);
+
+        for(int i = 1; i < intervals.length; i++) {
+            int lastEnd = result.get(result.size() - 1)[1];
+
+            if(lastEnd >= intervals[i][0]) {
+                result.get(result.size() - 1)[1] = Math.max(lastEnd, intervals[i][1]);
+            } else {
+                result.add(intervals[i]);
+            }
+        }
+        
+        return result.toArray(new int[result.size()][]);
+    }
+}
