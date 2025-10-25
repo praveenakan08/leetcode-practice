@@ -52,6 +52,9 @@ class Solution {
                         stack.pop();
                         index++;
                     }
+                } else {
+                    stack.push(nums[i]);
+                    index++;
                 }
             }
         }
