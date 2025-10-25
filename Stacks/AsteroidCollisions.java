@@ -32,3 +32,31 @@ class Solution {
         return res;
     }
 }
+
+class Solution {
+    public int[] asteroidCollision(int[] nums) {
+        Stack<Integer> stack = new Stack();
+        int result = 0, index = 0;
+
+        while(index < nums.length) {
+            if(stack.isEmpty()) {
+                stack.push(nums[i]);
+                index++;
+            } else {
+                if(stack.peek() > 0 && nums[i] < 0) {
+                    if(Math.abs(stack.peek()) > Math.abs(nums[i])) {
+                        index++;
+                    } else if(Math.abs(stack.peek()) < Math.abs(nums[i])) {
+                        stack.pop();
+                    } else {
+                        stack.pop();
+                        index++;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+}
+
